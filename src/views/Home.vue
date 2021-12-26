@@ -1,6 +1,8 @@
 <template>
-  <div class="bg-secondary p-2" style="height:100vh" >
+  <div class="p-2" style="height:100vh" >
     <ToDo />
+    
+    
   </div>
 </template>
 
