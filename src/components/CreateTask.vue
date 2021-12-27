@@ -17,7 +17,7 @@
         placeholder="Task Details"
         type="text"
       />
-      <button class="border rounded p-2 bg-success text-white" type="submit">New Task</button>
+      <button class="border rounded p-2 bg-success text-white" type="submit" @submit.prevent="">New Task</button>
     </form>
 
   </section>
@@ -27,7 +27,10 @@
 
 <script>
 export default {
+inheritAttrs: false,
   name: "CreateTask",
+  props:['tasker'],
+  
   data() {
     return {
 
@@ -46,6 +49,11 @@ export default {
 	  },
 	  closeModal(){
 		  this.isModal = false;
+	  },
+	  addTask(){
+		  if(this.newTask.title && this.newTask.description){
+			  this.$emit('new-task', this.newTask)
+		  }
 	  }
   }
 };

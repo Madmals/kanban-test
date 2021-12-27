@@ -1,5 +1,7 @@
 <template>
-  <Task class="mt-2" :task="tasker" />
+<div>
+  <Task class="mt-2" :tasker="tasker" />
+</div>
 </template>
 
 <script>
@@ -9,15 +11,9 @@ export default {
 	components:{
 		Task,
 	},
-	data(){
-		return{
-		tasker:{
-			title:'Siram Pokok',
-			description: 'Siram pokok hari-hari pokok pon sihat'
-		},
+	props:['tasker'],
 
-		}
-	}
+
 
 }
 </script>

@@ -2,8 +2,8 @@
 <section class="d-flex flex-column bg-">
 
   <div class="p-2 d-flex justify-content-between" style="height:100vh" >
-    <ToDo />
-    <CreateTask class="border rounder "  />
+    <ToDo :tasker="tasker" />
+    <CreateTask @new-task="addTasktoTasks" :tasker="tasker" class="border rounded"  />
   </div>
 
 </section>
@@ -21,5 +21,22 @@ export default {
     ToDo,
     CreateTask,
   },
+  	data(){
+		return{
+		tasker:[{
+			title:'Siram Pokok',
+			description: 'Siram pokok hari-hari pokok pon sihat'
+		}],
+
+		}
+	},
+  methods:{
+    addTasktoTasks(value){
+      this.tasker.push(value);
+      console.log(value);
+      console.log(this.tasker)
+    }
+
+  }
 };
 </script>
