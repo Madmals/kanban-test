@@ -1,15 +1,12 @@
 <template>
-  <button style="height: 5vh; z-index: 60" class="m-2" @click="ModalOpen" >
-    CreateTask
-  </button>
   <section
-    v-if="isModal"
+    v-if="bools"
     class="bg-white h-100 w-100 position-absolute"
     style="z-index: 20"
     @click="closeModal"
   ></section>
   <section
-    v-if="isModal"
+    v-if="bools"
     class="position-absolute d-flex justify-content-center align-items-start p-2"
     style="
       z-index: 50;
@@ -22,7 +19,7 @@
   >
     <form
       class="mt-10 d-flex flex-column border border-dark p-2 border-3 h-50 position-fixed"
-      @submit.prevent="addTask"
+      @submit.prevent="editTask"
     >
       <input
         class="border rounded p-2 mb-2"
@@ -31,7 +28,7 @@
         type="text"
       />
       <textarea
-      ref="texsearch"
+        ref="texsearch"
         rows="20"
         class="border rounded p-2 mb-2"
         v-model.lazy="newTask.description"
@@ -47,42 +44,45 @@
       </button>
     </form>
   </section>
+  <button @click="test">dd</button>
 </template>
 
 <script>
 export default {
   inheritAttrs: false,
-  name: "CreateTask",
-  props: ["tasker"],
+  name: "EditTask",
+  props: ["tasker", "showVal", "bool"],
   data() {
     return {
-      isModal: false,
+      showVals: this.showVal,
+      bools: this.bool,
       newTask: {
         title: "",
         description: "",
       },
-    }
+    };
   },
   methods: {
+    test() {
+      console.log(this.bools);
+      console.log(this.showVal);
+    },
     ModalOpen() {
-      this.isModal = true;
+      this.bools = true;
     },
     closeModal() {
-      this.isModal = false;
+      this.bools = false;
     },
-    addTask() {
-      if (this.newTask.title && this.newTask.description) {
-        this.$emit("new-task", this.newTask);
-        this.isModal = false;
-      }
+    showModal() {
+      this.bools = true;
+      // auto focus
+      this.$nextTick(() => {
+        this.$refs.textsearch.focus();
+      });
     },
-        showModal() {
-          this.isModal= true
-          // auto focus
-          this.$nextTick(()=> {
-              this.$refs.textsearch.focus();
-          })
-      }
+    showtheVal() {
+      console.log(this.showtheVal);
+    },
   },
 };
 </script>

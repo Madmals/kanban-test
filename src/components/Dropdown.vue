@@ -1,6 +1,5 @@
 <template>
-
-  <div class="dropdown">
+<div class="dropdown">
     <button
       class="btn btn-secondary dropdown-toggle h-75"
       type="button"
@@ -14,7 +13,7 @@
       <li v-for="option in options" :key="option">
         <a
           class="dropdown-item"
-          @click="value = option"
+          @click="(value = option);runder;rundet;"
           href="javascript:void(0)"
           >{{ option }}</a
         >
@@ -32,6 +31,15 @@ export default {
       value: "",
     };
   },
+  computed:{
+    runder(){
+     return this.$emit("edit-task", this.value) 
+
+    },
+    rundet(){
+      return this.$emit("edit-task-index",this.value)
+    }
+  }
 };
 </script>
 

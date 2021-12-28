@@ -1,5 +1,5 @@
 <template>
-  <section class="h-75 border border-success border-3 w-25">
+  <section class="h-75 border border-success border-3 w-25 overflow-scroll">
     <h3 class="w-100 bg-secondary mb-2 rounded fs-4 p-2 text-white">To Do</h3>
     <Tasks :tasker="tasker" />
   </section>

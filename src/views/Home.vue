@@ -3,7 +3,7 @@
 
   <div class="p-2 d-flex justify-content-between" style="height:100vh" >
     <ToDo :tasker="tasker" />
-    <CreateTask @new-task="addTasktoTasks" :tasker="tasker" class="border rounded"  />
+    <CreateTask @new-task="addTasktoTasks" :tasker="tasker" class="border rounded"  :isModal="modalOpen" />
   </div>
 
 </section>
