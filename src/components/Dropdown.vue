@@ -13,7 +13,7 @@
       <li v-for="option in options" :key="option">
         <a
           class="dropdown-item"
-          @click="(value = option);runder;rundet;"
+          @click="(value = option);runder;rundet;setBool;test;"
           href="javascript:void(0)"
           >{{ option }}</a
         >
@@ -36,8 +36,14 @@ export default {
      return this.$emit("edit-task", this.value) 
 
     },
+    test(){
+      return this.$emit("edit-task-test")
+    },
     rundet(){
       return this.$emit("edit-task-index",this.value)
+    }, 
+    setBool(){
+      return this.$emit("set-bool")
     }
   }
 };

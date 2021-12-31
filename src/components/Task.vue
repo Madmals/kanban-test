@@ -5,7 +5,7 @@
     :key="index"
     class="border border-dark border-3 p-2 m-2 rounded-3"
   >
-    <section class="d-flex justify-content-between">
+    <section class="d-flex justify-content-between" >
       <h4 class="w-50 font-weight-bold fs-5">
         <u>{{ item.title }}</u>
       </h4>
@@ -13,11 +13,12 @@
         @edit-task="showval"
         @edit-task-index="show(item, index)"
         @delete-task="del(index)"
+        @edit-task-test="run"
         :index="index"
       />
     </section>
     <p class="text-start m-2">{{ item.description }}</p>
-    <EditTask :showVal="showVal" :bool="bool" />
+    <EditTask :showVal="showVal" :bool="bool" @set-bool="setBool" />
   </div>
 </template>
 
@@ -33,17 +34,20 @@ export default {
   },
   data() {
     return {
+      bool:false,
       taks: {
-        items: "sss",
+        items: "",
         index: "",
       },
       showVal: "",
-      bool: false,
     };
   },
   name: "Task",
   props: ["tasker"],
   methods: {
+    setBool(value){
+      this.bool = value
+    },
     show(item, index) {
       this.taks.items = item;
       this.taks.index = index;
@@ -53,11 +57,10 @@ export default {
       if (val == "Edit") {
         setTimeout(() => {
           console.log(this.taks);
-          this.showval = this.taks;
+          this.showVal = this.taks;
           console.log(this.showval);
-          console.log(this.bool)
         }, 1000);
-          this.bool = !this.bool;
+        this.bool = !this.bool
       }
     },
   },

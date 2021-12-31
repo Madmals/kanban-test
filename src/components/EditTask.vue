@@ -1,15 +1,17 @@
 <template>
   <section
-    v-if="bools"
-    class="bg-white h-100 w-100 position-absolute"
-    style="z-index: 20"
+    v-if="bool"
+    :tasker="taskers"
+    class="bg-success h-100 w-100 position-absolute"
+    style="z-index: 70; width: 100vw; top: 15vh; left: 0"
     @click="closeModal"
   ></section>
   <section
-    v-if="bools"
+    v-if="bool"
     class="position-absolute d-flex justify-content-center align-items-start p-2"
     style="
-      z-index: 50;
+      z-index: 80;
+
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -40,22 +42,23 @@
         type="submit"
         @submit.prevent=""
       >
-        New Task
+        Edit Task
       </button>
+      <button @click="test">dd</button>
     </form>
   </section>
-  <button @click="test">dd</button>
 </template>
 
 <script>
 export default {
   inheritAttrs: false,
+  taskers: "",
   name: "EditTask",
-  props: ["tasker", "showVal", "bool"],
+  props: ["showVal", "bool"],
   data() {
     return {
-      showVals: this.showVal,
-      bools: this.bool,
+      editTask: null,
+      showValue: null,
       newTask: {
         title: "",
         description: "",
@@ -64,26 +67,28 @@ export default {
   },
   methods: {
     test() {
-      console.log(this.bools);
-      console.log(this.showVal);
-    },
-    ModalOpen() {
-      this.bools = true;
+      setTimeout(()=>{
+      this.showValue = this.showVal;
+      this.newTask.title = this.showValue.items.title;
+      this.newTask.description = this.showValue.items.description;
+
+      },1000)
     },
     closeModal() {
-      this.bools = false;
+      this.$emit("set-bool", false);
     },
     showModal() {
-      this.bools = true;
+      this.$emit("set-bool", true);
       // auto focus
       this.$nextTick(() => {
         this.$refs.textsearch.focus();
       });
     },
-    showtheVal() {
-      console.log(this.showtheVal);
-    },
+    
+
   },
+
+
 };
 </script>
 
