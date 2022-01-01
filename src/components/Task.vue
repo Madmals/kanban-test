@@ -63,10 +63,14 @@ export default {
           this.showVal = this.taks;
         }, 1000);
         this.bool = !this.bool;
+      } else {
+        setTimeout(() => {
+          this.showVal = this.taks;
+          this.emitter.emit("send-delete", this.showVal);
+        }, 1000);
       }
     },
   },
-
 };
 </script>
 

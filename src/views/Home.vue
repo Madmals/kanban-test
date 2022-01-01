@@ -1,8 +1,9 @@
 <template>
   <section class="d-flex flex-column bg-">
     <div class="p-2 d-flex justify-content-between" style="height: 100vh">
-      <ToDo :tasker="tasker" @edit-task-new="addTask" @test-focus="clear" />
+      <ToDo :tasker="tasker" @edit-task-new="addTask" @test-focus="clear" @send-delete="del"/>
       <CreateTask
+      @send-delete="del"
         @new-task="addTasktoTasks"
         :tasker="tasker"
         class="border rounded"
@@ -46,10 +47,17 @@ export default {
         this.tasker[val.index] =  val.newTask
       });
     },
+    del(){
+
+			this.emitter.on('send-delete',(val)=>{
+        this.tasker.splice(val.index,1)
+        })
+    }
     
   },
   mounted() {
     this.addTask();
+    this.del()
   },
 };
 </script>

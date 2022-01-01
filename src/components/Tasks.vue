@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Task class="mt-2" :tasker="tasker" />
+  <Task class="mt-2" :tasker="tasker" @send-delete="del"/>
 </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
 		Task,
 	},
 	props:['tasker'],
+
 
 	
 
