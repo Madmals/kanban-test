@@ -28,8 +28,10 @@
         v-model.lazy="newTask.title"
         placeholder="Title"
         type="text"
+        @focus="focus"
       />
       <textarea
+        @focus="focus"
         ref="texsearch"
         rows="20"
         class="border rounded p-2 mb-2"
@@ -39,12 +41,10 @@
       ></textarea>
       <button
         class="border rounded p-2 bg-success text-white"
-        type="submit"
         @submit.prevent=""
       >
         Edit Task
       </button>
-      <button @click="test">dd</button>
     </form>
   </section>
 </template>
@@ -57,8 +57,8 @@ export default {
   props: ["showVal", "bool"],
   data() {
     return {
-      editTask: null,
-      showValue: null,
+      focuss: false,
+      showValue: "aa",
       newTask: {
         title: "",
         description: "",
@@ -66,13 +66,19 @@ export default {
     };
   },
   methods: {
-    test() {
-      setTimeout(()=>{
-      this.showValue = this.showVal;
-      this.newTask.title = this.showValue.items.title;
-      this.newTask.description = this.showValue.items.description;
-
-      },1000)
+    //try to load the task in to input value before update
+    // test() {
+    //         if (this.focuss) {
+    //             console.log("aa");
+    //             this.newTask.title = "";
+    //             this.newTask.description = "";
+    //         }
+    //         else {
+    //         }
+    // },
+    focus() {
+      this.focuss = true;
+      console.log(this.focuss);
     },
     closeModal() {
       this.$emit("set-bool", false);
@@ -84,12 +90,19 @@ export default {
         this.$refs.textsearch.focus();
       });
     },
-    
-
+    editTask() {
+      this.showValue = this.showVal;
+      this.emitter.emit("edit-task-new", {
+        newTask: this.newTask,
+        index: this.showValue.index,
+      });
+      this.$emit("set-bool", false);
+    },
   },
 
-
+  // beforeUpdate() {
+  //     this.test();
+  // },
 };
 </script>
-
 <style></style>

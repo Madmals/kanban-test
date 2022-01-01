@@ -13,7 +13,7 @@
       <li v-for="option in options" :key="option">
         <a
           class="dropdown-item"
-          @click="(value = option);runder;rundet;setBool;test;"
+          @click="(value = option);runder;rundet;setBool;test;runTest"
           href="javascript:void(0)"
           >{{ option }}</a
         >
@@ -44,7 +44,10 @@ export default {
     }, 
     setBool(){
       return this.$emit("set-bool")
-    }
+    },
+    runTest(){
+     return this.emitter.emit("run-test",true)
+    },
   }
 };
 </script>

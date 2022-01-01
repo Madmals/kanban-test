@@ -12,9 +12,11 @@ export default {
   components: {
     Tasks,
   },
+  editTask:"",
   name: "ToDo",
   props: ["tasker"],
 };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

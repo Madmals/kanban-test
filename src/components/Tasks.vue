@@ -8,10 +8,13 @@
 import Task from "@/components/Task.vue"
 export default {
 	name:'Tasks',
+	editTask:"",
 	components:{
 		Task,
 	},
 	props:['tasker'],
+
+	
 
 
 
